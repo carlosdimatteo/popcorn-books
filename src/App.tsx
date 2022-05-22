@@ -1,13 +1,16 @@
 import './index.css';
 import { ThemeProvider } from 'styled-components';
 import { PopcornTheme } from './theme';
-import Routers from './routes';
+import { GoogleAPIProvider } from './hooks/useAPI';
+import { Home } from './containers/Home/Home';
 
 function App() {
 	return (
-		<ThemeProvider theme={PopcornTheme}>
-			<Routers />
-		</ThemeProvider>
+		<GoogleAPIProvider>
+			<ThemeProvider theme={PopcornTheme}>
+				<Home />
+			</ThemeProvider>
+		</GoogleAPIProvider>
 	);
 }
 
