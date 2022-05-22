@@ -5,6 +5,13 @@ export const ContentContainer = styled.div`
 	justify-content: center;
 	padding: 2rem 0;
 	flex-direction: column;
+	@media ${({
+			theme: {
+				device: { mobile },
+			},
+		}) => mobile} {
+		align-items: center;
+	}
 `;
 
 export const TinyText = styled.span`
@@ -22,6 +29,13 @@ export const TinyText = styled.span`
 export const EmptyStateText = styled.span`
 	text-align: center;
 	font-size: 1rem;
+	@media ${({
+			theme: {
+				device: { mobile },
+			},
+		}) => mobile} {
+		margin: 1rem;
+	}
 `;
 
 export const LoaderContainer = styled.div`
@@ -44,5 +58,7 @@ export const HeaderContainer = styled.div`
 			},
 		}) => mobile} {
 		flex-wrap: wrap;
+		padding: 0rem 1rem;
+		box-sizing: border-box;
 	}
 `;

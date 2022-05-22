@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { createContext, ReactElement, useContext, useState } from 'react';
+import { GOOGLE_API_URL } from '../constants';
 import { Volume, VolumeFromAPI, VolumeListFromApi } from '../types';
-const GOOGLE_API_URL = 'https://www.googleapis.com/books/v1/volumes';
+
 function useGoogleAPIState() {
 	const [error, setError] = useState(null);
 	const [loading, setLoading] = useState<boolean>(false);

@@ -1,1 +1,1 @@
-export const con = '';
+export const GOOGLE_API_URL = 'https://www.googleapis.com/books/v1/volumes';
