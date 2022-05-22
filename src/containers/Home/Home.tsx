@@ -2,13 +2,19 @@ import { useEffect, useState } from 'react';
 import { BookCard } from '../../components/BookCard/BookCard';
 import { BookCardGrid } from '../../components/BookCardGrid/BookCardGrid';
 import { Button } from '../../components/Button/Button';
+import { Heading } from '../../components/Heading/Heading';
 import { Input } from '../../components/Input/Input';
 import { PageContainer } from '../../components/layout/PageContainer/PageContainer';
 import { PageTitle } from '../../components/PageTitle/PageTitle';
 import { useGoogleAPI } from '../../hooks/useAPI';
 import { useDebounce } from '../../hooks/useDebounce';
 import { Volume } from '../../types';
-
+import {
+	ContentContainer,
+	EmptyStateText,
+	HeaderContainer,
+} from './Home.styles';
+import PopcornLogo from '../../assets/popcorn-logo.png';
 export function Home() {
 	const {
 		volumes,
@@ -17,12 +23,18 @@ export function Home() {
 		removeVolumeFromReadingList,
 		clearStorage,
 		getVolumes,
+		clearState,
+		loading,
 	} = useGoogleAPI();
 	const [search, setSearch] = useState('');
 	const debouncedSearch = useDebounce(search, 500);
 
 	useEffect(() => {
-		getVolumes(debouncedSearch);
+		if (debouncedSearch) {
+			getVolumes(debouncedSearch);
+		} else {
+			clearState();
+		}
 	}, [debouncedSearch]);
 
 	function checkIsSaved(id: string) {
@@ -41,36 +53,51 @@ export function Home() {
 
 	return (
 		<PageContainer>
-			<PageTitle>Popcorn Book Searcher</PageTitle>
-			<br />
-			<Input
-				placeholder="Search books by title"
-				value={search}
-				onChange={setSearch}
-			/>
-			<br />
-			<PageTitle>Found Books</PageTitle>
+			<HeaderContainer>
+				<img src={PopcornLogo} width="120px" />
+				<Heading>Popcorn Book Searcher</Heading>
+			</HeaderContainer>
+			<ContentContainer>
+				<Input
+					placeholder="Search books by title"
+					value={search}
+					onChange={setSearch}
+				/>
+				{!volumes?.length && !loading && !debouncedSearch && (
+					<EmptyStateText>
+						Type something in the search box to start!
+					</EmptyStateText>
+				)}
+				{!volumes?.length && !loading && !!debouncedSearch && (
+					<EmptyStateText>No books found, try another keyword</EmptyStateText>
+				)}
+				<HeaderContainer>
+					{!!volumes?.length && !loading && <PageTitle>Found Books</PageTitle>}
+				</HeaderContainer>
+				<BookCardGrid>
+					{volumes?.map((volume) => (
+						<BookCard
+							{...volume}
+							onIconClick={() => {
+								handleIconClick(checkIsSaved(volume.id), volume);
+							}}
+							saved={checkIsSaved(volume.id)}
+						/>
+					))}
+				</BookCardGrid>
+			</ContentContainer>
 
-			<BookCardGrid>
-				{volumes.map((volume) => (
-					<BookCard
-						{...volume}
-						onIconClick={() => {
-							handleIconClick(checkIsSaved(volume.id), volume);
+			<HeaderContainer>
+				<PageTitle>Your Reading List</PageTitle>
+				{!!readingList?.length && (
+					<Button
+						text="Clear storage!"
+						onClick={() => {
+							!!readingList.length && clearStorage();
 						}}
-						saved={checkIsSaved(volume.id)}
 					/>
-				))}
-			</BookCardGrid>
-
-			<PageTitle>Your Reading List</PageTitle>
-			<Button
-				text="Clear storage!"
-				onClick={() => {
-					console.log('clicked!!');
-					!!readingList.length && clearStorage();
-				}}
-			/>
+				)}
+			</HeaderContainer>
 
 			<BookCardGrid>
 				{readingList.map((volume) => (

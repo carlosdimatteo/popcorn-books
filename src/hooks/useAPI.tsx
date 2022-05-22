@@ -13,6 +13,8 @@ function useGoogleAPIState() {
 		setError(null);
 		setResponse(null);
 		setLoading(null);
+		setVolumes([]);
+		setVolumeCount(0);
 	}
 
 	function mapVolumeFromApi(volumeFromApi: VolumeFromAPI): Volume {
@@ -55,6 +57,7 @@ function useGoogleAPIState() {
 
 	async function getVolumes(searchQuery: string = 'popcorn') {
 		try {
+			setLoading(true);
 			const {
 				data: { totalItems, items },
 			} = await axios.get<VolumeListFromApi>(
@@ -63,9 +66,11 @@ function useGoogleAPIState() {
 			setVolumeCount(totalItems);
 			const volumes = items.map((volume) => mapVolumeFromApi(volume));
 			setVolumes(volumes);
+			setLoading(false);
 			return volumes;
 		} catch (e) {
 			setError(e);
+			setLoading(false);
 		}
 	}
 

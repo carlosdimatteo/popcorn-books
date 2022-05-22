@@ -8,6 +8,7 @@ export const StyledInput = styled.input`
 	line-height: 1.5rem;
 	border: none;
 	box-sizing: border-box;
+	max-width: 320px;
 	&:active {
 		border: none;
 	}

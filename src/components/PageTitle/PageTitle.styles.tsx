@@ -4,5 +4,5 @@ export const StyledSpan = styled.span`
 	font-weight: 700;
 	font-size: 3rem;
 	line-height: 1;
-	margin-bottom: 1rem;
+	margin: 1rem;
 `;
