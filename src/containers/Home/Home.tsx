@@ -13,8 +13,10 @@ import {
 	ContentContainer,
 	EmptyStateText,
 	HeaderContainer,
+	LoaderContainer,
 } from './Home.styles';
 import PopcornLogo from '../../assets/popcorn-logo.png';
+import loader from '../../assets/search-loader.gif';
 export function Home() {
 	const {
 		volumes,
@@ -54,7 +56,7 @@ export function Home() {
 	return (
 		<PageContainer>
 			<HeaderContainer>
-				<img src={PopcornLogo} width="120px" />
+				<img src={PopcornLogo} alt="logo" width="120px" />
 				<Heading>Popcorn Book Searcher</Heading>
 			</HeaderContainer>
 			<ContentContainer>
@@ -67,6 +69,13 @@ export function Home() {
 					<EmptyStateText>
 						Type something in the search box to start!
 					</EmptyStateText>
+				)}
+				{loading && !!debouncedSearch && (
+					<LoaderContainer>
+						{' '}
+						<img alt="loader" src={loader} width="120px" />
+						searching...
+					</LoaderContainer>
 				)}
 				{!volumes?.length && !loading && !!debouncedSearch && (
 					<EmptyStateText>No books found, try another keyword</EmptyStateText>

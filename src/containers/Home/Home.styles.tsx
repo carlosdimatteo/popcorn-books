@@ -12,6 +12,16 @@ export const EmptyStateText = styled.span`
 	font-size: 1rem;
 `;
 
+export const LoaderContainer = styled.div`
+	display: flex;
+	justify-content: center;
+	width: 50%;
+	margin: auto;
+	flex-direction: column;
+	text-align: center;
+	align-items: center;
+`;
+
 export const HeaderContainer = styled.div`
 	width: 100%;
 	display: flex;
