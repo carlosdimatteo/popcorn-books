@@ -17,7 +17,7 @@ const colors = {
 };
 
 const borderRadius = {
-	standard: '.75rem',
+	standard: '1.5rem',
 };
 
 const device = {

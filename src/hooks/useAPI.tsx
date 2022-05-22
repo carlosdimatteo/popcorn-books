@@ -46,7 +46,8 @@ function useGoogleAPIState() {
 			description,
 			readingModes,
 			maturityRating,
-			imageLinks,
+			smallThumbnail: imageLinks.smallThumbnail,
+			thumbnail: imageLinks.thumbnail,
 			previewLink,
 			infoLink,
 		};
@@ -85,8 +86,14 @@ function useGoogleAPIState() {
 	}
 
 	function addVolumeToReadingList(volume: Volume) {
-		const newList = [...readingList, volume];
-		updateStorageList(newList);
+		const readingList = getListFromStorage();
+		const volumeInList = readingList.find(({ id }) => id === volume.id);
+		if (!volumeInList) {
+			const newList = [...readingList, volume];
+			updateStorageList(newList);
+		} else {
+			setError({ message: 'Volume is already in your reading list' });
+		}
 	}
 
 	function removeVolumeFromReadingList(id: string) {

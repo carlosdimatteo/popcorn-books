@@ -97,7 +97,8 @@ export type Volume = {
 	description?: string | null;
 	readingModes: ReadingModes;
 	maturityRating: string;
-	imageLinks: ImageLinks;
+	smallThumbnail: string;
+	thumbnail: string;
 	previewLink: string;
 	infoLink: string;
 };

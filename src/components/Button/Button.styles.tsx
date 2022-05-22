@@ -6,12 +6,16 @@ export const StyledButton = styled.button<{
 	color?: string;
 }>`
 	background: ${({ theme: { colors }, color }) =>
-		color ? colors[color] || color : colors.primary};
+		color ? colors[color] || color : `${colors.primary}10`};
 	padding: 1rem;
-	color: white;
+	color: ${({ theme: { colors }, color }) =>
+		color ? colors[color] || color : colors.primary};
 	border-radius: ${({ theme: { borderRadius } }) => borderRadius.standard};
 	&:hover {
 		cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+		background: ${({ theme: { colors }, color }) =>
+			color ? colors[color] || color : colors.primary};
+		color: white;
 	}
 	border: none;
 	text-transform: capitalize;

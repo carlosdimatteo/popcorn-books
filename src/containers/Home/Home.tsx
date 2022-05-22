@@ -1,7 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '../../components/Button/Button';
+import { Input } from '../../components/Input/Input';
 import { PageContainer } from '../../components/layout/PageContainer/PageContainer';
+import { PageTitle } from '../../components/PageTitle/PageTitle';
 import { useGoogleAPI } from '../../hooks/useAPI';
+import { useDebounce } from '../../hooks/useDebounce';
 
 export function Home() {
 	const {
@@ -11,21 +14,27 @@ export function Home() {
 		removeVolumeFromReadingList,
 		getVolumes,
 	} = useGoogleAPI();
+	const [search, setSearch] = useState('');
+	const debouncedSearch = useDebounce(search, 500);
+
 	useEffect(() => {
-		getVolumes();
-	}, []);
+		getVolumes(debouncedSearch);
+	}, [debouncedSearch]);
+
 	return (
 		<PageContainer>
-			reading list
+			<PageTitle>Your Reading List</PageTitle>
 			<br />
 			{readingList.map(({ id }, index) => (
 				<h1 key={id + index}>READING LIST VOLUME : {id}</h1>
 			))}
 			<br />
-			volumes from api
+			<Input value={search} onChange={setSearch} />
 			<br />
-			{volumes.map(({ id }) => (
-				<h1 key={id}> VOLUME : {id}</h1>
+			<PageTitle>Available Books</PageTitle>
+			<br />
+			{volumes.map(({ title }, index) => (
+				<h1 key={index}> VOLUME : {title}</h1>
 			))}
 			<br />
 			<Button
@@ -36,7 +45,7 @@ export function Home() {
 				}}
 			/>
 			<Button
-				text="save first volume to storage!"
+				text="remove first volume to storage!"
 				onClick={() => {
 					console.log('clicked!!');
 					!!volumes.length && removeVolumeFromReadingList(volumes[0]?.id);
