@@ -65,7 +65,7 @@ export function Home() {
 					<a
 						title="me!"
 						rel="noreferrer"
-						href="https://github/carlosdimatteo"
+						href="https://github.com/carlosdimatteo"
 						target="_blank"
 					>
 						{' '}
