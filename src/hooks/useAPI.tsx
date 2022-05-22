@@ -18,24 +18,20 @@ function useGoogleAPIState() {
 	}
 
 	function mapVolumeFromApi(volumeFromApi: VolumeFromAPI): Volume {
+		const { kind, id, etag } = volumeFromApi;
 		const {
-			kind,
-			id,
-			etag,
-			volumeInfo: {
-				title,
-				subtitle,
-				authors,
-				publisher,
-				publishedDate,
-				description,
-				readingModes,
-				maturityRating,
-				imageLinks,
-				previewLink,
-				infoLink,
-			},
-		} = volumeFromApi;
+			title,
+			subtitle,
+			authors,
+			publisher,
+			publishedDate,
+			description,
+			readingModes,
+			maturityRating,
+			imageLinks,
+			previewLink,
+			infoLink,
+		} = volumeFromApi.volumeInfo;
 		return {
 			kind,
 			id,
@@ -48,8 +44,8 @@ function useGoogleAPIState() {
 			description,
 			readingModes,
 			maturityRating,
-			smallThumbnail: imageLinks.smallThumbnail,
-			thumbnail: imageLinks.thumbnail,
+			smallThumbnail: imageLinks?.smallThumbnail,
+			thumbnail: imageLinks?.thumbnail,
 			previewLink,
 			infoLink,
 		};
@@ -69,6 +65,7 @@ function useGoogleAPIState() {
 			setLoading(false);
 			return volumes;
 		} catch (e) {
+			console.log(e);
 			setError(e);
 			setLoading(false);
 		}
