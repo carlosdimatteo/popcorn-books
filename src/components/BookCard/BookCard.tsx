@@ -38,11 +38,12 @@ export function BookCard({
 			<BookCardInfoContainer>
 				<BookCardText>
 					Author{authors?.length > 1 ? 's' : ''}:{' '}
-					{authors?.length > 4
+					{authors && authors?.length > 4
 						? `${cleanAuthors(authors.slice(0, 3), 8)} and ${
 								authors?.length - 3
 						  } more`
 						: cleanAuthors(authors)}
+					{!authors && 'No author'}
 				</BookCardText>
 				<BookCardText>Publisher: {publisher || 'Not Published'}</BookCardText>
 			</BookCardInfoContainer>
