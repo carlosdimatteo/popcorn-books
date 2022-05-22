@@ -24,7 +24,7 @@ export function BookCard({
 	saved?: boolean;
 }) {
 	function cleanAuthors(authors: string[], len: number = 40) {
-		return authors.map((author) => clipText(author, len)).join(', ');
+		return authors?.map((author) => clipText(author, len)).join(', ');
 	}
 	return (
 		<BookCardContainer>
