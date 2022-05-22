@@ -8,6 +8,7 @@ export const StyledButton = styled.button<{
 	background: ${({ theme: { colors }, color }) =>
 		color ? colors[color] || color : `${colors.primary}10`};
 	padding: 1rem;
+	box-sizing: border-box;
 	color: ${({ theme: { colors }, color }) =>
 		color ? colors[color] || color : colors.primary};
 	border-radius: ${({ theme: { borderRadius } }) => borderRadius.standard};

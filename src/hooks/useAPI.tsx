@@ -96,6 +96,10 @@ function useGoogleAPIState() {
 		}
 	}
 
+	function clearStorage() {
+		updateStorageList([]);
+	}
+
 	function removeVolumeFromReadingList(id: string) {
 		const readingList = getListFromStorage();
 		const filter = readingList.filter(({ id: volumeId }) => id !== volumeId);
@@ -114,6 +118,7 @@ function useGoogleAPIState() {
 		getReadingList,
 		removeVolumeFromReadingList,
 		addVolumeToReadingList,
+		clearStorage,
 	};
 }
 
@@ -129,6 +134,7 @@ export const GoogleAPIContext: React.Context<{
 	addVolumeToReadingList: (volume: Volume) => void;
 	removeVolumeFromReadingList: (id: string) => void;
 	clearState: () => void;
+	clearStorage: () => void;
 }> = createContext({} as any);
 
 export function GoogleAPIProvider({ children }: { children?: ReactElement }) {

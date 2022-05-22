@@ -1,6 +1,6 @@
 const colors = {
 	primary: '#2563eb',
-	secondary: '#fdeaa7',
+	secondary: '#ffb224',
 	tertiary: '#fa2dc7',
 	accent: '#6b7280',
 	white: '#FAFDFD',
@@ -17,6 +17,7 @@ const colors = {
 };
 
 const borderRadius = {
+	small: '1rem',
 	standard: '1.5rem',
 };
 
