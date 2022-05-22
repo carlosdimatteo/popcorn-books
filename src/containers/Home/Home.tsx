@@ -84,15 +84,16 @@ export function Home() {
 					{!!volumes?.length && !loading && <PageTitle>Found Books</PageTitle>}
 				</HeaderContainer>
 				<BookCardGrid>
-					{volumes?.map((volume) => (
-						<BookCard
-							{...volume}
-							onIconClick={() => {
-								handleIconClick(checkIsSaved(volume.id), volume);
-							}}
-							saved={checkIsSaved(volume.id)}
-						/>
-					))}
+					{!loading &&
+						volumes?.map((volume) => (
+							<BookCard
+								{...volume}
+								onIconClick={() => {
+									handleIconClick(checkIsSaved(volume.id), volume);
+								}}
+								saved={checkIsSaved(volume.id)}
+							/>
+						))}
 				</BookCardGrid>
 			</ContentContainer>
 
@@ -100,7 +101,7 @@ export function Home() {
 				<PageTitle>Your Reading List</PageTitle>
 				{!!readingList?.length && (
 					<Button
-						text="Clear storage!"
+						text="Remove all"
 						onClick={() => {
 							!!readingList.length && clearStorage();
 						}}
