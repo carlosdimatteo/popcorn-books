@@ -10,6 +10,6 @@ Install dependencies with `npm i`
 
 Run the project with `npm start`
 
-You can also check it out [here](google.com)
+You can also check it out [here](https://popcorn-books-89ff0.web.app/)
 
 ##### PS: The loader is a custom animated GIF, I put quite some time and a lot of heart into it hope u think its cool 😊
