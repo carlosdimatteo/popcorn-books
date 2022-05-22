@@ -9,18 +9,19 @@ export const BookCardContainer = styled.div`
 	flex-direction: column;
 	background: white;
 	box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-	width: 300px;
-	height: 300px;
+	width: 360px;
+	height: 360px;
 	margin: 12px;
-	padding: 40px;
+	padding: 20px;
+	box-sizing: border-box;
 	position: relative;
 	@media ${({
 			theme: {
 				device: { mobile },
 			},
 		}) => mobile} {
-		width: 200px;
-		height: 200px;
+		width: 280px;
+		height: 280px;
 	}
 `;
 
@@ -36,13 +37,20 @@ export const SaveIcon = styled(StarIcon)`
 	}
 `;
 
+export const PreviewLinkText = styled.a`
+	font-size: 1rem;
+	color: ${({
+		theme: {
+			colors: { accent },
+		},
+	}) => accent};
+	justify-self: flex-end;
+	line-height: 1.5rem;
+`;
+
 export const BookCardImage = styled.img`
 	width: 150px;
 	height: 150px;
-	&:hover {
-		cursor: pointer;
-		box-shadow: 4px 8px 11px rgba(0, 0, 0, 0.25);
-	}
 	border-radius: ${({ theme: { borderRadius } }) => borderRadius.standard};
 	@media ${({
 			theme: {

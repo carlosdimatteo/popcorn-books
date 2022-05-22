@@ -6,6 +6,7 @@ import {
 	BookCardInfoContainer,
 	BookCardText,
 	BookCardTitle,
+	PreviewLinkText,
 	SaveIcon,
 } from './BookCard.styles';
 
@@ -33,13 +34,7 @@ export function BookCard({
 				title={saved ? 'Remove from reading list' : 'Add to reading list'}
 				filled={saved}
 			/>
-			<BookCardImage
-				onClick={() => {
-					window.open(previewLink, '_blank');
-				}}
-				title="Go to preview"
-				src={thumbnail || smallThumbnail}
-			/>
+			<BookCardImage src={thumbnail || smallThumbnail} />
 			<BookCardTitle>{clipText(title, 46)}</BookCardTitle>
 			<BookCardInfoContainer>
 				<BookCardText>
@@ -53,6 +48,13 @@ export function BookCard({
 				</BookCardText>
 				<BookCardText>Publisher: {publisher || 'Not Published'}</BookCardText>
 			</BookCardInfoContainer>
+			<PreviewLinkText
+				href={previewLink}
+				target="_blank"
+				title={'Go to book preview'}
+			>
+				Preview
+			</PreviewLinkText>
 		</BookCardContainer>
 	);
 }
