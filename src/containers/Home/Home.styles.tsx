@@ -7,6 +7,11 @@ export const ContentContainer = styled.div`
 	flex-direction: column;
 `;
 
+export const TinyText = styled.span`
+	font-size: 0.8rem;
+	align-self: flex-end;
+`;
+
 export const EmptyStateText = styled.span`
 	text-align: center;
 	font-size: 1rem;

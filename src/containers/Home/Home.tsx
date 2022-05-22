@@ -14,6 +14,7 @@ import {
 	EmptyStateText,
 	HeaderContainer,
 	LoaderContainer,
+	TinyText,
 } from './Home.styles';
 import PopcornLogo from '../../assets/popcorn-logo.png';
 import loader from '../../assets/search-loader.gif';
@@ -33,6 +34,7 @@ export function Home() {
 
 	useEffect(() => {
 		if (debouncedSearch) {
+			console.log('getting volumes');
 			getVolumes(debouncedSearch);
 		} else {
 			clearState();
@@ -58,6 +60,18 @@ export function Home() {
 			<HeaderContainer>
 				<img src={PopcornLogo} alt="logo" width="120px" />
 				<Heading>Popcorn Book Searcher</Heading>
+				<TinyText>
+					Built with ❤️ by
+					<a
+						title="me!"
+						rel="noreferrer"
+						href="https://github/carlosdimatteo"
+						target="_blank"
+					>
+						{' '}
+						Carlos Di Matteo
+					</a>
+				</TinyText>
 			</HeaderContainer>
 			<ContentContainer>
 				<Input
@@ -87,6 +101,7 @@ export function Home() {
 					{!loading &&
 						volumes?.map((volume) => (
 							<BookCard
+								key={volume.id}
 								{...volume}
 								onIconClick={() => {
 									handleIconClick(checkIsSaved(volume.id), volume);
@@ -112,6 +127,7 @@ export function Home() {
 			<BookCardGrid>
 				{readingList.map((volume) => (
 					<BookCard
+						key={volume.id}
 						onIconClick={() => {
 							handleIconClick(checkIsSaved(volume.id), volume);
 						}}
