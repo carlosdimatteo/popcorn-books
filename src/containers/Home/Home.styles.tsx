@@ -10,6 +10,13 @@ export const ContentContainer = styled.div`
 export const TinyText = styled.span`
 	font-size: 0.8rem;
 	align-self: flex-end;
+	@media ${({
+			theme: {
+				device: { mobile },
+			},
+		}) => mobile} {
+		margin: 0rem 1rem;
+	}
 `;
 
 export const EmptyStateText = styled.span`
@@ -31,4 +38,11 @@ export const HeaderContainer = styled.div`
 	width: 100%;
 	display: flex;
 	align-items: center;
+	@media ${({
+			theme: {
+				device: { mobile },
+			},
+		}) => mobile} {
+		flex-wrap: wrap;
+	}
 `;

@@ -14,6 +14,14 @@ export const BookCardContainer = styled.div`
 	margin: 12px;
 	padding: 40px;
 	position: relative;
+	@media ${({
+			theme: {
+				device: { mobile },
+			},
+		}) => mobile} {
+		width: 200px;
+		height: 200px;
+	}
 `;
 
 export const SaveIcon = styled(StarIcon)`
@@ -33,6 +41,14 @@ export const BookCardImage = styled.img`
 	height: 150px;
 
 	border-radius: ${({ theme: { borderRadius } }) => borderRadius.standard};
+	@media ${({
+			theme: {
+				device: { mobile },
+			},
+		}) => mobile} {
+		width: 80px;
+		height: 80px;
+	}
 `;
 
 export const BookCardInfoContainer = styled.div`
@@ -47,6 +63,15 @@ export const BookCardTitle = styled.span`
 	line-height: 1.6rem;
 	padding-top: 1rem;
 	padding-bottom: 0.5rem;
+	@media ${({
+			theme: {
+				device: { mobile },
+			},
+		}) => mobile} {
+		font-size: 1.2rem;
+
+		line-height: 1.3rem;
+	}
 `;
 
 export const BookCardText = styled.span`
@@ -58,4 +83,13 @@ export const BookCardText = styled.span`
 			colors: { accent },
 		},
 	}) => accent};
+	@media ${({
+			theme: {
+				device: { mobile },
+			},
+		}) => mobile} {
+		font-size: 0.8rem;
+		max-height: 50%;
+		line-height: 1rem;
+	}
 `;

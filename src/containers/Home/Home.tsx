@@ -112,30 +112,32 @@ export function Home() {
 				</BookCardGrid>
 			</ContentContainer>
 
-			<HeaderContainer>
-				<PageTitle>Your Reading List</PageTitle>
-				{!!readingList?.length && (
-					<Button
-						text="Remove all"
-						onClick={() => {
-							!!readingList.length && clearStorage();
-						}}
-					/>
-				)}
-			</HeaderContainer>
+			<ContentContainer>
+				<HeaderContainer>
+					<PageTitle>Your Reading List</PageTitle>
+					{!!readingList?.length && (
+						<Button
+							text="Remove all"
+							onClick={() => {
+								!!readingList.length && clearStorage();
+							}}
+						/>
+					)}
+				</HeaderContainer>
 
-			<BookCardGrid>
-				{readingList.map((volume) => (
-					<BookCard
-						key={volume.id}
-						onIconClick={() => {
-							handleIconClick(checkIsSaved(volume.id), volume);
-						}}
-						{...volume}
-						saved={checkIsSaved(volume.id)}
-					/>
-				))}
-			</BookCardGrid>
+				<BookCardGrid>
+					{readingList.map((volume) => (
+						<BookCard
+							key={volume.id}
+							onIconClick={() => {
+								handleIconClick(checkIsSaved(volume.id), volume);
+							}}
+							{...volume}
+							saved={checkIsSaved(volume.id)}
+						/>
+					))}
+				</BookCardGrid>
+			</ContentContainer>
 		</PageContainer>
 	);
 }
