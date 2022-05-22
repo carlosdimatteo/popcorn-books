@@ -39,7 +39,10 @@ export const SaveIcon = styled(StarIcon)`
 export const BookCardImage = styled.img`
 	width: 150px;
 	height: 150px;
-
+	&:hover {
+		cursor: pointer;
+		box-shadow: 4px 8px 11px rgba(0, 0, 0, 0.25);
+	}
 	border-radius: ${({ theme: { borderRadius } }) => borderRadius.standard};
 	@media ${({
 			theme: {

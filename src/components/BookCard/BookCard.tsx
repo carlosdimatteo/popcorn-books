@@ -33,7 +33,13 @@ export function BookCard({
 				title={saved ? 'Remove from reading list' : 'Add to reading list'}
 				filled={saved}
 			/>
-			<BookCardImage src={thumbnail || smallThumbnail} />
+			<BookCardImage
+				onClick={() => {
+					window.open(previewLink, '_blank');
+				}}
+				title="Go to preview"
+				src={thumbnail || smallThumbnail}
+			/>
 			<BookCardTitle>{clipText(title, 46)}</BookCardTitle>
 			<BookCardInfoContainer>
 				<BookCardText>
